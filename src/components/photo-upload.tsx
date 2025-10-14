@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { X, Upload, Loader2 } from "lucide-react"
-import { supabase } from "@/lib/supabase"
+import Image from "next/image"
 
 interface PhotoUploadProps {
   imageData: string
@@ -37,26 +37,6 @@ export function PhotoUpload({
         method: "POST",
         body: form,
       })
-
-      // const { data: uploadData, error: uploadError } = await supabase.storage
-      //   .from("photos")
-      //   .upload(fileName, blob, {
-      //     contentType: "image/jpeg",
-      //     cacheControl: "3600",
-      //   })
-
-      // if (uploadError) throw uploadError
-
-      // const { data: urlData } = supabase.storage
-      //   .from("photos")
-      //   .getPublicUrl(fileName)
-
-      // const { error: insertError } = await supabase.from("photos").insert({
-      //   image_url: urlData.publicUrl,
-      //   caption: caption.trim(),
-      // })
-
-      // if (insertError) throw insertError
 
       onUploadComplete()
     } catch (err) {
@@ -91,7 +71,7 @@ export function PhotoUpload({
 
           <div className="space-y-4">
             <div className="relative bg-black rounded-lg overflow-hidden">
-              <img
+              <Image
                 src={imageData}
                 alt="Preview"
                 className="w-full h-auto max-h-96 object-contain"

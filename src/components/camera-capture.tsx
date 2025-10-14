@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Camera, X, RotateCcw } from "lucide-react"
+import Image from "next/image"
 
 interface CameraCaptureProps {
   onCapture: (imageData: string) => void
@@ -16,13 +17,6 @@ export function CameraCapture({ onCapture, onClose }: CameraCaptureProps) {
   const [stream, setStream] = useState<MediaStream | null>(null)
   const [capturedImage, setCapturedImage] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
-
-  useEffect(() => {
-    startCamera()
-    return () => {
-      stopCamera()
-    }
-  }, [])
 
   const startCamera = async () => {
     try {
@@ -50,6 +44,12 @@ export function CameraCapture({ onCapture, onClose }: CameraCaptureProps) {
       stream.getTracks().forEach((track) => track.stop())
     }
   }
+  useEffect(() => {
+    startCamera()
+    return () => {
+      stopCamera()
+    }
+  }, [])
 
   const capturePhoto = () => {
     if (videoRef.current && canvasRef.current) {
@@ -106,7 +106,7 @@ export function CameraCapture({ onCapture, onClose }: CameraCaptureProps) {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <img
+              <Image
                 src={capturedImage}
                 alt="Captured"
                 className="w-full h-full object-cover"
