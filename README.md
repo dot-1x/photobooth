@@ -1,7 +1,7 @@
 # Photobooth — Simple Photobooth App
 
 A lightweight demo photobooth application built with Next.js 15.  
-This project is created for UNSIQ DiscoverIT Teknik Informatika 2025 to demonstrate web development concepts and the interaction between frontend and backend.
+This project is created for DiscoverIT Teknik Informatika 2025 to demonstrate web development concepts and the interaction between frontend and backend to new students of Ti UNSIQ.
 
 ## Key points
 
