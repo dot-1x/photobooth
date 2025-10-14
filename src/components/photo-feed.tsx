@@ -2,13 +2,21 @@
 
 import { useEffect, useState } from "react"
 import { Card, CardContent } from "@/components/ui/card"
-import { supabase } from "@/lib/supabase"
 import { formatDistanceToNow } from "date-fns"
 import { Loader2, Image as ImageIcon } from "lucide-react"
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
+import { Button } from "@/components/ui/button"
+import { MoreHorizontal } from "lucide-react"
 
 interface Photo {
   id: string
   image_url: string
+  image_name: string
   caption: string
   created_at: string
 }
@@ -18,6 +26,19 @@ export function PhotoFeed() {
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState<string | null>(null)
 
+  const deletePhoto = async (id: string, image_name: string) => {
+    setLoading(true)
+    try {
+      const response = await fetch("/api/image", {
+        method: "DELETE",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ id, image_name }),
+      })
+      if (!response.ok) throw new Error("Failed to delete photo")
+    } finally {
+      fetchPhotos()
+    }
+  }
   const fetchPhotos = async () => {
     try {
       const response = await fetch("/api/image", { cache: "no-store" })
@@ -73,7 +94,31 @@ export function PhotoFeed() {
           key={photo.id}
           className="overflow-hidden hover:shadow-lg transition-shadow"
         >
-          <div className="relative aspect-square bg-gray-100">
+          <div className="relative aspect-square bg-gray-100 group">
+            <div className="absolute top-2 right-2 z-10">
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild>
+                  {/* Button is invisible by default, appears on group hover */}
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    className="h-8 w-8 rounded-full bg-white/80 opacity-0 backdrop-blur-sm transition-opacity group-hover:opacity-100"
+                  >
+                    <MoreHorizontal className="h-4 w-4" />
+                    <span className="sr-only">Photo options</span>
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent align="end">
+                  <DropdownMenuItem
+                    onClick={() => deletePhoto(photo.id, photo.image_name)}
+                    // Style the item for danger/delete action
+                    className="text-red-500 focus:text-red-500 focus:bg-red-50"
+                  >
+                    Delete
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
             <img
               src={photo.image_url}
               alt={photo.caption || "Photo"}

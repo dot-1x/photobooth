@@ -7,7 +7,6 @@ export async function GET() {
   const { data, error }: SupabaseResponse = await supabase
     .from("photos")
     .select("*")
-  console.log("data", data, error)
   if (error) {
     return new Response(
       JSON.stringify({
@@ -72,6 +71,7 @@ export async function POST(req: Request) {
 
     const { error: insertError } = await supabase.from("photos").insert({
       image_url: urlData.publicUrl,
+      image_name: uniqueName,
       caption: caption.trim(),
     })
 
@@ -110,4 +110,37 @@ export async function POST(req: Request) {
       }
     )
   }
+}
+
+export async function DELETE(req: Request) {
+  const { id, image_name } = (await req.json()) as {
+    id: string
+    image_name: string
+  }
+  if (!id) {
+    return new Response(JSON.stringify({ error: "Missing id" }), {
+      status: 400,
+      headers: { "content-type": "application/json" },
+    })
+  }
+  await supabase.storage.from("photos").remove([image_name])
+  const { data } = await supabase
+    .from("photos")
+    .delete()
+    .eq("id", id.trim())
+    .select("*")
+
+  return new Response(
+    JSON.stringify({
+      message: "Deleted image",
+      data: {
+        id,
+        caption: data?.[0]?.caption || null,
+      },
+    }),
+    {
+      status: 200,
+      headers: { "content-type": "application/json" },
+    }
+  )
 }
