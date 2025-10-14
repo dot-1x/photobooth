@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Photobooth — Simple Photobooth App
 
-## Getting Started
+A lightweight demo photobooth application built with Next.js 15.  
+This project is created for UNSIQ DiscoverIT Teknik Informatika 2025 to demonstrate web development concepts and the interaction between frontend and backend.
 
-First, run the development server:
+## Key points
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Purpose: Teaching demo to explain frontend / backend responsibilities.
+- Framework: Next.js 15 (React + server capabilities).
+- Scope: Simple camera capture, preview, retake, and save/upload flow.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- Live camera capture (web browser).
+- Instant preview and retake functionality.
+- Simple upload endpoint to persist images using supabase as database.
+- Minimal UI focused on demonstrating request flow between client and server.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Tech stack
 
-## Learn More
+- Next.js 15 (App Router + API routes)
+- React (frontend camera UI)
+- Node.js for server-side handlers
+- Supabase to store images
 
-To learn more about Next.js, take a look at the following resources:
+## Getting started
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Prerequisites
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Node.js (v18+ recommended)
+- npm or yarn
 
-## Deploy on Vercel
+Installation
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Clone the repo:
+   git clone <repository-url>
+2. Install dependencies:
+   npm install
+   (or yarn)
+3. Run development server:
+   npm run dev
+   Open http://localhost:3000
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Build & Start
+
+- Build: npm run build
+- Start: npm run start
+
+## How it demonstrates frontend vs backend
+
+- Frontend (browser):
+  - Accesses user camera via getUserMedia.
+  - Handles UI for capture, preview, and retake.
+  - Submits image data (base64 or FormData) to backend upload endpoints.
+- Backend (Next.js API routes / server handlers):
+  - Receives image data.
+  - Validates and stores images (file system, DB, or cloud).
+  - Returns metadata/URLs for frontend to display or persist.
+
+## Attribution
+
+Demo application for UNSIQ DiscoverIT Teknik Informatika 2025. Use and adapt for educational purposes.
