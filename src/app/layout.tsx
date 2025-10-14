@@ -13,7 +13,7 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: "Photobooth App",
+  title: "PotopotBot",
   description: "Demo application for DiscoverIT 2025 Teknik Informatika UNSIQ",
 }
 

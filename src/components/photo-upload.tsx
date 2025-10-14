@@ -52,7 +52,7 @@ export function PhotoUpload({ imageData, onClose, onUploadComplete }: PhotoUploa
   return (
     <div className="fixed inset-0 bg-black/70 backdrop-blur-lg z-50 flex items-center justify-center p-4">
       <motion.div className="w-full max-w-5xl " initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.95 }} transition={{ duration: 0.2, ease: 'easeOut' }}>
-        <Card className="w-full h-full overflow-hidden shadow-2xl rounded-2xl border ">
+        <Card className="w-full h-full max-h-[80vh] overflow-hidden shadow-2xl rounded-2xl border ">
           <div className="grid md:grid-cols-10 h-full">
             {/* Image Preview Column */}
             <div className="md:col-span-6  flex items-center justify-center p-2 md:ml-6">
