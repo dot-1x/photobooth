@@ -59,18 +59,27 @@ export async function POST(req: Request) {
       .toString(36)
       .slice(2, 9)}-${filename}`
 
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
       .from("photos")
       .upload(uniqueName, buffer, {
         cacheControl: "3600",
         upsert: false,
         contentType: mime,
       })
-    if (error) {
+    const { data: urlData } = supabase.storage
+      .from("photos")
+      .getPublicUrl(uniqueName)
+
+    const { error: insertError } = await supabase.from("photos").insert({
+      image_url: urlData.publicUrl,
+      caption: caption.trim(),
+    })
+
+    if (error || insertError) {
       return new Response(
         JSON.stringify({
           error: "Upload failed",
-          details: error.message,
+          details: error?.message || insertError?.message,
         }),
         {
           status: 500,

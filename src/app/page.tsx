@@ -4,7 +4,7 @@ import { useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Camera } from "lucide-react"
 import { CameraCapture } from "@/components/camera-capture"
-// import { PhotoUpload } from "@/components/photo-upload"
+import { PhotoUpload } from "@/components/photo-upload"
 import { PhotoFeed } from "@/components/photo-feed"
 
 export default function Home() {
@@ -52,13 +52,13 @@ export default function Home() {
         />
       )}
 
-      {/* {capturedImage && (
+      {capturedImage && (
         <PhotoUpload
           imageData={capturedImage}
           onClose={() => setCapturedImage(null)}
           onUploadComplete={handleUploadComplete}
         />
-      )} */}
+      )}
     </div>
   )
 }
