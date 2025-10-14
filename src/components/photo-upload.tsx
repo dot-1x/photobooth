@@ -5,7 +5,6 @@ import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Textarea } from "@/components/ui/textarea"
 import { X, Upload, Loader2 } from "lucide-react"
-import Image from "next/image"
 
 interface PhotoUploadProps {
   imageData: string
@@ -71,7 +70,7 @@ export function PhotoUpload({
 
           <div className="space-y-4">
             <div className="relative bg-black rounded-lg overflow-hidden">
-              <Image
+              <img
                 src={imageData}
                 alt="Preview"
                 className="w-full h-auto max-h-96 object-contain"

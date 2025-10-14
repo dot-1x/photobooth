@@ -4,7 +4,6 @@ import { useEffect, useRef, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Card, CardContent } from "@/components/ui/card"
 import { Camera, X, RotateCcw } from "lucide-react"
-import Image from "next/image"
 
 interface CameraCaptureProps {
   onCapture: (imageData: string) => void
@@ -106,7 +105,7 @@ export function CameraCapture({ onCapture, onClose }: CameraCaptureProps) {
                 className="w-full h-full object-cover"
               />
             ) : (
-              <Image
+              <img
                 src={capturedImage}
                 alt="Captured"
                 className="w-full h-full object-cover"
