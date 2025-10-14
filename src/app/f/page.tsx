@@ -33,10 +33,10 @@ export default function Home() {
                 <h1 className="text-2xl font-bold tracking-tight text-foreground">PotopotBot</h1>
                 <p className="text-sm text-muted-foreground  sm:block">Photobooth ala-ala supaya kalean paham FE BE.</p>
               </div>
-              {/* <Button onClick={() => setShowCamera(true)} size="lg" className="hidden sm:inline-flex items-center gap-2 rounded-full font-semibold transition-transform duration-300 hover:scale-105">
+              <Button onClick={() => setShowCamera(true)} size="lg" className="hidden sm:inline-flex items-center gap-2 rounded-full font-semibold transition-transform duration-300 hover:scale-105">
                 <Camera className="h-5 w-5" />
                 Take Photo
-              </Button> */}
+              </Button>
             </div>
           </div>
         </header>
@@ -47,14 +47,14 @@ export default function Home() {
         </main>
 
         {/* Floating Action Button untuk Mobile */}
-        {/* <Button
+        <Button
           onClick={() => setShowCamera(true)}
           size="lg"
           className="sm:hidden fixed bottom-6 right-6 z-40 rounded-full w-16 h-16 shadow-2xl shadow-primary/30 flex items-center justify-center transition-transform duration-300 active:scale-90"
           aria-label="Take Photo"
         >
           <Camera className="h-6 w-6" />
-        </Button> */}
+        </Button>
       </div>
 
       {/* Komponen Modal untuk Kamera dan Upload */}
